@@ -1,0 +1,42 @@
+
+
+
+<section class="section">
+	<article class="article">
+		<div class="container">
+
+<div class="container section__header">
+<div class="section__name"></div>
+<div class="section__title">НОВОСТИ</div>
+</div>
+		
+		
+
+{% for newsItem in news %}
+
+<div class="row">
+
+
+
+{% if newsItem.bannerImg != "" %}
+
+<div class="col-sm-3">
+	<img  src="{{ (upload_path~newsItem.bannerImg) | imagine_filter('my_thumb') }}" alt="">
+</div>
+<div class="col-sm-9">
+	<h3><a style="color:#307aa3;" href="{{path('page',{'url':newsItem.fullUrl})}}">{{newsItem.name | raw}}</a></h3>
+	{{newsItem.bannerHtml | raw}}
+</div>
+{% else %}
+<div class="col-sm-12">
+	<h3><a style="color:#307aa3;" href="{{path('page',{'url':newsItem.fullUrl})}}">{{newsItem.name | raw}}</a></h3>
+	{{newsItem.bannerHtml | raw}}
+</div>
+
+{% endif %}
+</div>
+{% endfor %}
+
+		</div>
+	</article>
+</section>

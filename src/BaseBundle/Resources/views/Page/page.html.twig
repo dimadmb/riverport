@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{page.title}}{% endblock %}
+{% block title %}{{page.title | raw}}{% endblock %}
 
 {% block body %}
 
-<div class="container">
-<div class="row">
+<div class="filler"></div>
+
+				{% if bannerHtml is defined %}
+					{{ bannerHtml | raw }}
+				{% endif %}
+
 
 {#<h1 id="page_h1"  class="{% if is_granted('ROLE_ADMIN') %} edit-inline {% endif %}">{{page.h1}}</h1>#}
 
@@ -13,6 +17,10 @@
 {% if is_granted('ROLE_ADMIN') %}<div class="clearfix  edit-inline  " style="display:none;" id="page_body" >{{page.body | raw}}</div>{% endif %}
 
 {% if page.file |length > 0 %}
+<section class="section">
+	<article class="article">
+		<div class="container">
+
 <div class="images clearfix">
 {% for image in page.file %}
 	<div class="col-sm-3 admin-thumb" id="image-{{image.id}}">
@@ -22,10 +30,14 @@
 	</div>
 {% endfor %}
 </div>
+
+
+		</div>
+	</article>
+</section>
 {% endif %}
 
-</div>
-</div>
+
 
 {% endblock %}
 
@@ -42,7 +54,7 @@
         </div>
     </div>	
 </div>
-
+<!--
 <div id="answer" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -56,7 +68,7 @@
 		</div>
 	</div>
 </div>
-
+-->
 {% endif %}
 {% endblock %}
 
@@ -97,7 +109,7 @@
 				success: function(data, textStatus, jqXHR){
 					//console.log(data);
 					//$('#answer .modal-body').html(data);
-					$('#answer').modal();
+					//$('#answer').modal();
 					location.reload();
 
 				},

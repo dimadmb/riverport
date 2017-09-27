@@ -4,7 +4,7 @@ imports:
     - { resource: services.yml }
     - { resource: "@BaseBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
-    - { resource: "@CruiseBundle/Resources/config/services.yml" }
+#    - { resource: "@CruiseBundle/Resources/config/services.yml" }
     - { resource: "@ForumBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -13,7 +13,7 @@ parameters:
     locale: ru
     upload_directory: "%kernel.root_dir%/../web/files"
     liip_imagine.jpegoptim.binary: "%kernel.root_dir%/../../../.local/bin/jpegoptim"
-    email_forum_moderator: "akokshin@vodohod.ru"
+#    email_forum_moderator: "akokshin@vodohod.ru"
 
 framework:
     #esi:             ~
@@ -96,14 +96,14 @@ doctrine:
             #   2. Uncomment database_path in parameters.yml.dist
             #   3. Uncomment next line:
             #     path:     "%database_path%"
-          cruise:
-            driver: pdo_mysql
-            host:     "%database_host%"
-            port:     "%database_port%"			
-            dbname:   "%database_cruise_name%"
-            user:     "%database_cruise_user%"
-            password: "%database_cruise_password%"
-            charset:  UTF8
+#          cruise:
+#            driver: pdo_mysql
+#            host:     "%database_host%"
+#            port:     "%database_port%"			
+#            dbname:   "%database_cruise_name%"
+#            user:     "%database_cruise_user%"
+#            password: "%database_cruise_password%"
+#            charset:  UTF8
 
 
     orm:
@@ -117,11 +117,11 @@ doctrine:
                     BaseBundle: ~
                     ForumBundle: ~
 
-            cruise:
-                naming_strategy: doctrine.orm.naming_strategy.underscore
-                connection:       cruise
-                mappings:
-                    CruiseBundle: ~
+#            cruise:
+#                naming_strategy: doctrine.orm.naming_strategy.underscore
+#                connection:       cruise
+#                mappings:
+#                    CruiseBundle: ~
 
 #       auto_generate_proxy_classes: "%kernel.debug%"
 #       naming_strategy: doctrine.orm.naming_strategy.underscore
@@ -157,7 +157,7 @@ liip_imagine :
 
         my_thumb :
             filters :
-                thumbnail  : { size : [200, 150] }
+                thumbnail  : { size : [263, 214] }
                 #relative_resize: { heighten: 200 }
         my_thumb_photo_gal:
             filters :
@@ -211,7 +211,7 @@ fm_elfinder:
                     uploads:
                         #show_hidden: true|false # defaults to false, hides dotfiles
                         driver: LocalFileSystem
-                        path: "upload"
+                        path: "uploads"
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
                         upload_max_size: 32M # also file upload sizes restricted in php.ini

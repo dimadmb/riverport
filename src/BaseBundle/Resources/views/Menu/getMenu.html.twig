@@ -1,7 +1,7 @@
 {% macro pages(pages,  rootPages) %}
-    <ul{% if rootPages %} class="nav navbar-nav" {% else %} class="dropdown-menu" {% endif %} >
+    <ul{% if rootPages %} class="main-nav" {% else %} class="sub-nav" {% endif %} >
         {% for page in pages if (not page.parent or not rootPages or not page.parent.parent )%}
-            <li {% if page.children|length and page.parent  %} class="dropdown " {% endif %}>
+            <li {% if page.children|length and page.parent  %}  {% endif %}>
 				   <a href="{{ path('page', { 'url': page.fullUrl }) }}" >{{ page.name }}</a>
 
                 {% if page.children|length and page.parent  %}

@@ -24,7 +24,7 @@ class AppKernel extends Kernel
 			new FM\ElfinderBundle\FMElfinderBundle(),	
 
 			new FOS\UserBundle\FOSUserBundle(),
-            new CruiseBundle\CruiseBundle(),
+//            new CruiseBundle\CruiseBundle(),
 			
 			
 			new Lsw\MemcacheBundle\LswMemcacheBundle(),

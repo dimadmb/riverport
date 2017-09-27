@@ -16,6 +16,67 @@ class PageController extends Controller
     {
 		return  $this->pageAction("");
 	}
+	
+	
+	
+	 /**
+	 * @Template()
+     */
+    public function newsIndexAction($count = null)
+    {
+		return $this->newsAction($count);	
+	}	
+	
+	 /**
+	 * @Template()
+     */
+    public function newsAction($count = null)
+    {
+		$repository = $this->getDoctrine()->getRepository('BaseBundle:Page');
+		$news = $repository->findBy(['parentUrl'=>'about/news'],['created'=>'DESC'],$count);
+		return ['news'=>$news];		
+	}	
+	
+	
+	 /**
+	 * @Template()
+	 * @Route("/about/news/{url}", name="news_detail")
+     */
+    public function newsDetailAction($url)
+    {
+		$repository = $this->getDoctrine()->getRepository('BaseBundle:Page');
+		$page = $repository->findOneByFullUrl("about/news/".$url);
+		if ($page == null) {
+			throw $this->createNotFoundException("Страница $url не найдена.");
+		}
+		
+		
+		$html = $page->getBody();
+		
+		$html = htmlspecialchars_decode($html,ENT_QUOTES );
+		$template =  $this->container->get('twig')->createTemplate($html);
+		$html = $template->render([]);
+		
+		$page->html = $html;
+		
+		$parameters = [];
+		$parameters['page'] = $page;
+		if("" != $page->getBannerImg())
+		{
+			$parameters['bannerImg'] = $page->getBannerImg();
+		}
+		if("" != $page->getBannerHtml())
+		{
+			//$parameters['bannerHtml'] = $page->getBannerHtml();
+		}
+		
+		/*if($page->getParentUrl() == "about/news") 
+			return $this->render("BaseBundle:Page:news.html.twig");*/
+		
+		
+		return $parameters;		
+		
+	}
 
 
 
@@ -65,6 +126,9 @@ class PageController extends Controller
 		{
 			$parameters['bannerHtml'] = $page->getBannerHtml();
 		}
+		
+		/*if($page->getParentUrl() == "about/news") 
+			return $this->render("BaseBundle:Page:news.html.twig");*/
 		
 		
 		return $parameters;

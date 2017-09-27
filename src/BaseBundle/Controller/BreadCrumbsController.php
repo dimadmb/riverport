@@ -22,6 +22,9 @@ class BreadCrumbsController extends Controller
 		}
 		else
 		{
+			
+			$pages = [];
+			
 			$aliases = explode('/',trim($request->getPathInfo()));
 			$fullUrl = [];
 			foreach($aliases as $alias)

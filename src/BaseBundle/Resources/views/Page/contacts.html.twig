@@ -1,0 +1,52 @@
+
+
+
+{% if result %}
+
+<p style="color:green; text-align:center;">Ваше письмо отправлено!</p>
+<br>
+
+{% else %}
+
+
+<section class="section">
+
+<div class="container">
+
+
+<div class="contacts-form">
+<div class="contacts-form__title">Отправить письмо</div>
+
+{{ form_start(form) }}
+<div class="row">
+<div class="col-md-6">
+<div class="ui-form-group">{{ form_widget(form.name, {'attr':{'class':'ui-form-control', 'placeholder':'Имя'}} ) }}</div>
+</div>
+
+<div class="col-md-6">
+<div class="ui-form-group">{{ form_widget(form.email, {'attr':{'class':'ui-form-control', 'placeholder':'E-mail'}} ) }}</div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="col-xs-12">
+<div class="ui-form-group">{{ form_widget(form.body, {'attr':{'class':'ui-form-control', 'placeholder':'Сообщение'}} ) }}</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-xs-12">{{ form_widget(form.submit, {'attr':{'class':'ui-btn ui-btn_default'} ,'label': 'Отправить' } ) }}</div>
+</div>
+{{ form_end(form) }}
+</div>
+ 
+
+
+</div>
+
+{% endif %}
+
+</section>
+
+      <section class="section-map"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9b858772261611819d010fe89681cbb68a3b89d0586c3e2f5d74bdec5d3fbe67&amp;width=100%25&amp;height=450&amp;lang=ru_RU&amp;scroll=true"></script></section>
